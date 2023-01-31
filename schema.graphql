@@ -1,0 +1,220 @@
+type Badge {
+  name: String!
+  imageUrl: String!
+  backgroundColor: String!
+  description: String!
+  dateOfBadge: String!
+  isVisible: Boolean!
+}
+
+type Comments {
+  userId: ID!
+  body: String!
+  postId: ID!
+  likes: [String]!
+}
+
+type PostSelect {
+  id: ID!
+  author: ID!
+  body: String
+  img: String
+  video: String
+  likes: [ID]
+}
+
+type Preference {
+  id: String!
+  language: String!
+  theme: String!
+  viewColoredProfile: Boolean!
+  animations: Boolean!
+}
+
+type UserSelect {
+  id: String!
+  username: String!
+  name: String!
+  image: String!
+}
+
+type Auth {
+  token: String!
+}
+
+type LikeSelect {
+  post: ID!
+  user: ID!
+}
+
+input getBadgePayload {
+  id: String!
+}
+
+input getCommentPayload {
+  id: Int!
+}
+
+input getPostPayload {
+  id: String!
+}
+
+input getPreferencesPayload {
+  id: String!
+}
+
+input getUserType {
+  id: String!
+}
+
+type Query {
+  getBadges: [Badge]!
+  getBadge(id: getBadgePayload): Badge!
+  getComments: [Comments]!
+  getComment(id: getCommentPayload): Comments!
+  getPosts: [PostSelect]!
+  getPost(input: getPostPayload): PostSelect!
+  getPreferences(input: getPreferencesPayload): Preference!
+  getUsers: [UserSelect]!
+  getUser(id: getUserType): UserSelect!
+  getMe: UserSelect!
+}
+
+input SignUpPayload {
+  username: String!
+  password: String!
+}
+
+input ValidatePayload {
+  token: String!
+}
+
+input BadgeCreateInput {
+  name: String!
+  imageUrl: String!
+  backgroundColor: String!
+  description: String!
+  dateOfBadge: String!
+  isVisible: Boolean!
+}
+
+input deleteBadgePayload {
+  id: String!
+}
+
+input CommentCreateInput {
+  userId: Int!
+  body: String!
+  postId: String!
+  likes: [String]!
+}
+
+input deleteCommentPayload {
+  id: String!
+}
+
+input CreatePostPayload {
+  body: String!
+  img: String!
+  video: String!
+}
+
+input UpdatePostPayload {
+  body: String!
+  img: String!
+  video: String!
+  id: String!
+}
+
+input deletePostPayload {
+  id: String!
+}
+
+input HandlePostPayload {
+  postId: String!
+}
+
+input PreferencesInput {
+  language: String!
+  theme: String!
+  viewColoredProfile: String!
+  animations: String!
+}
+
+input PreferencesUpdateInput {
+  id: String!
+  language: String!
+  theme: String!
+  viewColoredProfile: String!
+  animations: String!
+}
+
+input CreateUserPayload {
+  username: String!
+  password: String!
+  name: String!
+}
+
+input UpdateUserPayload {
+  username: String!
+  name: String!
+  image: String!
+}
+
+input deleteUserPayloadType {
+  id: String!
+}
+
+type Mutation {
+  signUp(signUpPayload: SignUpPayload): Auth!
+  validateToken(validateTokenPayload: ValidatePayload): ValidateResponse!
+  createBadge(badgeInput: BadgeCreateInput): Badge!
+  deleteBadge(id: deleteBadgePayload): deleteBadgeType!
+  createComment(commentInput: CommentCreateInput): Comments!
+  deleteComment(id: deleteCommentPayload): deleteCommentType!
+  createPost(createPostPayload: CreatePostPayload): PostSelect!
+  updatePost(updatePostPayload: UpdatePostPayload): UpdatePostResponseType!
+  deletePost(id: deletePostPayload): DeletePostResponse!
+  handleLike(handlePostPayload: HandlePostPayload): HandlePostResponse!
+  createPreferences(preferencesInput: PreferencesInput): Preference!
+  updatePreferences(preferencesInput: PreferencesUpdateInput): Preference!
+  createUser(createUserPayload: CreateUserPayload): CreateUserResponse!
+  updateUser(updateUserPayload: UpdateUserPayload): UpdateUserResponse!
+  deleteUser(id: deleteUserPayloadType): deleteUserResponse!
+}
+
+type ValidateResponse {
+  success: Boolean!
+}
+
+type deleteBadgeType {
+  deletedCount: Int!
+}
+
+type deleteCommentType {
+  deletedCount: Int!
+}
+
+type UpdatePostResponseType {
+  count: Int!
+}
+
+type DeletePostResponse {
+  count: Int!
+}
+
+type HandlePostResponse {
+  includeLike: Boolean!
+}
+
+type CreateUserResponse {
+  id: String!
+}
+
+type UpdateUserResponse {
+  count: Int!
+}
+
+type deleteUserResponse {
+  count: Int!
+}
