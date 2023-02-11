@@ -1,4 +1,5 @@
-type Badge {
+type Badge
+{
   name: String!
   imageUrl: String!
   backgroundColor: String!
@@ -7,14 +8,16 @@ type Badge {
   isVisible: Boolean!
 }
 
-type Comments {
+type Comments
+{
   userId: ID!
   body: String!
   postId: ID!
   likes: [String]!
 }
 
-type PostSelect {
+type PostSelect
+{
   id: ID!
   author: ID!
   body: String
@@ -23,7 +26,8 @@ type PostSelect {
   likes: [ID]
 }
 
-type Preference {
+type Preference
+{
   id: String!
   language: String!
   theme: String!
@@ -31,18 +35,21 @@ type Preference {
   animations: Boolean!
 }
 
-type UserSelect {
+type UserSelect
+{
   id: String!
   username: String!
   name: String!
   image: String!
 }
 
-type Auth {
+type Auth
+{
   token: String!
 }
 
-type LikeSelect {
+type LikeSelect
+{
   post: ID!
   user: ID!
 }
